@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
+import Button from '../button/button';
 
 function Header() {
   return (
@@ -18,6 +19,7 @@ function Header() {
               <NavLink className="mx-7" href="#experiences">Expérience</NavLink>
               <NavLink className="mx-7" href="#contact">Contact</NavLink>
             </ul>
+            <Button />
           </div>
           <div className="mx-4">
             <a href="https://linkedin.com/in/roman-kiziltoprak-247338182/" target="blank">
