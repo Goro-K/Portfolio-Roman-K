@@ -9,6 +9,11 @@
         "semi": ["error", "always"],
         "react/jsx-filename-extension": "off",
         "linebreak-style": 0,
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": "off"
+    },
+
+    "parserOptions": {
+        "parser": "@babel/eslint-parser"  
     }
 }
