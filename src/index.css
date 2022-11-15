@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+@layer base {
+  #root {
+    @apply font-body
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  header {
-    @apply font-header
-  }
-}
 
 #root {
   background-color: rgba(228, 227, 227, 0.4)
