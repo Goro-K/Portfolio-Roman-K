@@ -11,7 +11,7 @@ module.exports = {
         primary: 'rgba(0,0,0,.4)',
       }),
       fontFamily: {
-        header: ['Poppins', 'sans-serif'],
+        body: ['Poppins', 'sans-serif'],
       },
     },
   },
