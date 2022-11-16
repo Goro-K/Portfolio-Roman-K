@@ -8,11 +8,11 @@ function Card({ title, image, link }) {
       <div className="relative w-full">
         <img src={image} alt="" className="bg-gray-200 dark:bg-gray-900 h-80 rounded-xl w-full" />
         <div className="absolute bottom-0 py-1 pl-2 text-slate-600 dark:text-slate-200  bg-slate-400 dark:bg-slate-700 w-full rounded-b-xl items-center h-14 text-base">
-          <h2
+          <h3
             className="text-base"
           >
             {title}
-          </h2>
+          </h3>
           <div className="flex justify-between w-full items-center">
             <p className="text-blue-600 dark:text-red-400">
               Voir le projet
