@@ -12,5 +12,30 @@
 
 
 #root {
-  background-color: rgba(228, 227, 227, 0.4)
+  background-color: rgba(228, 227, 227, 0.4);
+}
+
+.gallery:hover .card {
+  transform: translateX(-15%);
+}
+
+.card:hover ~ .card {
+  transform: translateX(15%);
+}
+.card:hover {
+  transform: scale(1.05) !important;
+}
+
+.gallery {
+  transition: transform 300ms ease 100ms;
+}
+
+.chevron-right {
+  right: 35%;
+  bottom: 45%;
+}
+
+.chevron-left {
+  right: 37%;
+  bottom: 46%;
 }
