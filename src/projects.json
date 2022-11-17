@@ -2,10 +2,10 @@
     {
         "id": "fd5f",
         "title": "Booki",
-        "image": "images/projet/projet-booki.png",
+        "image": "images/icon/logo-projet/Booki.png",
         "description": "Vous avez trouvé votre premier stage en tant que développeur web chez Booki, une petite entreprise proposant un outil de planiCcation de vacances !",
         "objectif": "L’entreprise a décidé de réaliser un prototype. Vous êtes chargé de créer ce prototype en intégrant la maquette en HTML et CSS.",
-        "Technologies": [
+        "technologies": [
             "images/icon/html-icon.png",
             "images/icon/css-icon.png"
         ],
@@ -14,10 +14,10 @@
     {
         "id": "ty8f",
         "title": "Oh my food",
-        "image": "images/projet/projet-ohmyfood.png",
+        "image": "images/icon/logo-projet/Oh my food.png",
         "description": "Ohmyfood! est une jeune startup qui voudrait s'imposer sur le marché de la restauration. L'objectif est de développer un site 100% mobile qui répertorie les menus de restaurants gastronomiques.",
         "objectif": "Chargé du développement du site, je suis chargé de créer 1 page d'accueil et 4 pages de menus en utilisant HTML, CSS et SASS afin de faciliter la création d'animation CSS",
-        "Technologies": [
+        "technologies": [
             "images/icon/html-icon.png",
             "images/icon/css-icon.png",
             "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
@@ -27,10 +27,36 @@
     {
         "id": "qdz9",
         "title": "Kanap",
-        "image": "images/projet/P5/Accueil.png",
+        "image": "images/icon/logo-projet/Kanap.png",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
         "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "Technologies": [
+        "technologies": [
+            "images/icon/html-icon.png",
+            "images/icon/css-icon.png",
+            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+    },
+    {
+        "id": "aet6",
+        "title": "Kasa",
+        "image": "images/icon/logo-projet/Kasa.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
+        "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
+        "technologies": [
+            "images/icon/html-icon.png",
+            "images/icon/css-icon.png",
+            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+    },    
+    {
+        "id": "qds9",
+        "title": "Portfolio",
+        "image": "images/icon/logo-projet/Portfolio.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
+        "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
+        "technologies": [
             "images/icon/html-icon.png",
             "images/icon/css-icon.png",
             "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
