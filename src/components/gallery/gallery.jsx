@@ -1,11 +1,11 @@
-import {
-  useState, useEffect, useRef, useContext,
-} from 'react';
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Projects from '../../projects.json';
-import Card from '../card/card';
-import DataContext from '../../context/dataContext';
+import ProjectCard from '../card/projectCard';
+import CompetenceCard from '../card/competenceCard';
+import ExperienceCard from '../card/experienceCard';
 
-function Gallery() {
+function Gallery({ index }) {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0); // currentIndex défini la position du slide
   const gallery = useRef(null);
@@ -52,8 +52,8 @@ function Gallery() {
 
   return (
     <div>
-      <h2 className="ml-8 mt-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
-        Projets
+      <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+        {index === 1 ? 'Projets' : index === 2 ? 'Compétences' : index === 3 ? 'Experiences' : null}
       </h2>
       <div className=" carousel relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
@@ -102,24 +102,48 @@ function Gallery() {
             <span className="sr-only">Next</span>
           </button>
         </div>
-        <div className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0" ref={gallery}>
-          {Projects.map((project) => (
-            <div
-              key={project.id}
-              className="text-center relative h-96 w-96 snap-start"
-            >
-              <a href={project.lien} className="h-full w-full aspect-square block z-0">
-                <Card
-                  title={project.title}
-                  image={project.image}
-                />
-              </a>
+        {index === 1
+          ? (
+            <div className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6" ref={gallery}>
+              {Projects.map((project) => (
+                <div
+                  key={project.id}
+                  className="text-center relative h-96 w-96 snap-start"
+                >
+                  <a href={project.lien} className="h-full w-full aspect-square block z-0">
+                    <ProjectCard
+                      title={project.title}
+                      image={project.image}
+                    />
+                  </a>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )
+          : index === 2
+            ? (
+              <div className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6" ref={gallery}>
+                <CompetenceCard />
+              </div>
+            )
+            : index === 3
+              ? (
+                <div className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6" ref={gallery}>
+                  <ExperienceCard />
+                </div>
+              )
+              : null}
       </div>
     </div>
   );
 }
+
+Gallery.propTypes = {
+  index: PropTypes.number,
+};
+
+Gallery.defaultProps = {
+  index: null,
+};
 
 export default Gallery;
