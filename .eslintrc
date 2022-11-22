@@ -11,7 +11,8 @@
         "linebreak-style": 0,
         "react/react-in-jsx-scope": "off",
         "no-unused-vars": "off",
-        "no-shadow": "off"
+        "no-shadow": "off",
+        "no-nested-ternary": "off"
     },
 
     "parserOptions": {
