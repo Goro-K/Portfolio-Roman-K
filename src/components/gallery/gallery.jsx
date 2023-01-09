@@ -70,7 +70,7 @@ function Gallery({ index }) {
           <button
             type="submit"
             onClick={movePrev}
-            className="hover:bg-blue-900/75 text-white w-10 h-full z-10 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
+            className="hover:bg-blue-900/75 text-white w-10 h-full z-30 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("prev")}
           >
             <svg
@@ -92,7 +92,7 @@ function Gallery({ index }) {
           <button
             type="submit"
             onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full z-10 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
+            className="hover:bg-blue-900/75 text-white w-10 h-full z-30 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
             disabled={isDisabled("next")}
           >
             <svg
@@ -114,7 +114,7 @@ function Gallery({ index }) {
         </div>
         {index === 1 ? (
           <div
-            className="relative flex gap-4 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6"
+            className="flex gap-4 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
             ref={gallery}
           >
             {Projects.map((projet) => (
@@ -123,7 +123,7 @@ function Gallery({ index }) {
           </div>
         ) : index === 2 ? (
           <div
-            className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6"
+            className="flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
             ref={gallery}
           >
             {Technologie.map((technologie) => (
@@ -132,7 +132,7 @@ function Gallery({ index }) {
           </div>
         ) : index === 3 ? (
           <div
-            className="relative flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 my-6"
+            className="flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
             ref={gallery}
           >
             <ExperienceCard />
