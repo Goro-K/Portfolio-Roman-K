@@ -1,0 +1,99 @@
+[
+    {
+        "id": "dfse",
+        "name":"HTML",
+        "image": "/images/icon/logo-technologies/html-icon.webp",
+        "usedFor": ["Tout les projets."],
+        "knowledge":[ 
+        "- Creation de page HTML", 
+        "- Respect des règles W3C"
+        ]
+    },
+    {
+        "id": "gdfg",
+        "name":"CSS",
+        "image": "/images/icon/logo-technologies/css-icon.webp",
+        "usedFor": ["Tout les projets."],
+        "knowledge":[ 
+        "- Connaissance de base de la plupart des classes", 
+        "- Respect des règles W3C",
+        "- Création d'animation"
+        ]
+    },
+    {
+        "id": "fdyh",
+        "name":"SASS",
+        "image": "/images/icon/logo-technologies/sass-icon.webp",
+        "usedFor": ["Projet Oh My food"],
+        "knowledge":[ 
+        "- Connaissance de base de la plupart des classes", 
+        "- Respect des règles W3C",
+        "- Création d'animation"
+        ]
+    },
+    {
+        "id": "pmhf",
+        "name":"JavaScript",
+        "image": "/images/icon/logo-technologies/js-icon.webp",
+        "usedFor": ["Projet Kanap", "Projet Kasa", "Projet HotTakes", "Portfolio"],
+        "knowledge":[ 
+        "- Fetch ", 
+        "- Regex",
+        "- LocalStorage",
+        "- Création d'animation simple (comme le défilement des projets sur ce site)",
+        "- Connaissance des méthodes",
+        "- Asynchrone"
+        ]
+    },
+    {
+        "id": "cvfn",
+        "name":"Tailwind",
+        "image": "/images/icon/logo-technologies/tailwind-icon.webp",
+        "usedFor": ["Portfolio"],
+        "knowledge":[ 
+        "- Création du thème light/dark du portfolio", 
+        "- Création d'animation"
+        ]
+    },
+    {
+        "id": "mnnt",
+        "name":"Node JS",
+        "image": "/images/icon/logo-technologies/nodejs-icon.webp",
+        "usedFor": ["Projet HotTakes"],
+        "knowledge":[ 
+        "- Utilisation de framework (Express)"
+        ] 
+    },
+    {
+        "id": "adsp",
+        "name":"Express",
+        "image": "/images/icon/logo-technologies/express-icon.webp",
+        "usedFor": ["Projet HotTakes"],
+        "knowledge":[ 
+        "- Création d'une API REST",
+        "- Mise en place d'un CRUD",
+        "- Création de route Produit et Authentification"
+        ] 
+    },
+    {
+        "id": "wxcr",
+        "name":"MongoDB",
+        "image": "/images/icon/logo-technologies/mongoDB-icon.webp",
+        "usedFor": ["Projet HotTakes"],
+        "knowledge":[ 
+        "- création de modèle de donnée avec Mongoose",
+        "- Mise en place de la base de donnée"
+        ] 
+    },
+    {
+        "id": "bfhh",
+        "name":"React",
+        "image": "/images/icon/logo-technologies/react-icon.webp",
+        "usedFor": ["Projet Kasa", "Portfolio"],
+        "knowledge":[ 
+        "- création de Composant réutilisable",
+        "- Utilisation de hook (UseState, UseRef, UseEffect)",
+        "- Utilisation de prop entre composant"
+        ] 
+    }
+]

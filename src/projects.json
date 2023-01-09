@@ -2,65 +2,117 @@
     {
         "id": "fd5f",
         "title": "Booki",
-        "image": "images/icon/logo-projet/Booki.png",
-        "description": "Vous avez trouvé votre premier stage en tant que développeur web chez Booki, une petite entreprise proposant un outil de planiCcation de vacances !",
-        "objectif": "L’entreprise a décidé de réaliser un prototype. Vous êtes chargé de créer ce prototype en intégrant la maquette en HTML et CSS.",
-        "technologies": [
-            "images/icon/html-icon.png",
-            "images/icon/css-icon.png"
+        "logo": "/images/icon/logo-projet/Booki.webp",
+        "description": "Vous avez trouvé votre premier stage en tant que développeur web chez Booki, une petite entreprise proposant un outil de planification de vacances !",
+        "objectifs": [
+            "- Intégrer du contenu conformément à une maquette.", 
+            "- Implémenter une interface responsive."
         ],
-        "lien": "https://github.com/Goro-K/Kiziltoprak_Roman_2_09042022"
+        "technologies": [
+            "/images/icon/logo-technologies/html-icon.webp",
+            "/images/icon/logo-technologies/css-icon.webp"
+        ],
+        "lien": "https://github.com/Goro-K/Kiziltoprak_Roman_2_09042022",
+        "imagesPc": [
+            "/images/projet/P2/projet-booki.png",
+            "/images/projet/P2/projet-booki-footer.png"
+        ]
     },
     {
         "id": "ty8f",
         "title": "Oh my food",
-        "image": "images/icon/logo-projet/Oh my food.png",
+        "logo": "/images/icon/logo-projet/Oh-my-food.webp",
         "description": "Ohmyfood! est une jeune startup qui voudrait s'imposer sur le marché de la restauration. L'objectif est de développer un site 100% mobile qui répertorie les menus de restaurants gastronomiques.",
-        "objectif": "Chargé du développement du site, je suis chargé de créer 1 page d'accueil et 4 pages de menus en utilisant HTML, CSS et SASS afin de faciliter la création d'animation CSS",
-        "technologies": [
-            "images/icon/html-icon.png",
-            "images/icon/css-icon.png",
-            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        "objectifs": [
+            "- Mettre en place son environnement Front-End.",
+            "- Assurer la cohérence graphique d'un site web.",
+            "- Mettre en place une structure de navigation pour un site web.",
+            "- Mettre en œuvre des effets CSS graphiques avancés.",
+            "- Utiliser un système de gestion de versions pour le suivi du projet et son hébergement."
         ],
-        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+        "technologies": [
+            "/images/icon/logo-technologies/html-icon.webp",
+            "/images/icon/logo-technologies/css-icon.webp",
+            "/images/icon/logo-technologies/sass-icon.webp"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html",
+        "imagesPc": [
+            "/images/projet/P3/Accueil pc.png",
+            "/images/projet/P3/Menu pc.png"
+        ],
+        "video": "https://www.youtube.com/watch?v=BNOkntxyOMA"
     },
     {
         "id": "qdz9",
         "title": "Kanap",
-        "image": "images/icon/logo-projet/Kanap.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "technologies": [
-            "images/icon/html-icon.png",
-            "images/icon/css-icon.png",
-            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        "logo": "/images/icon/logo-projet/Kanap.webp",
+        "description": "Votre client est Kanap, une marque de canapés qui vend ses produits depuis sa boutique exclusivement. Aujourd’hui, celle-ci souhaiterait avoir une plateforme de e-commerce en plus de sa boutique physique pour vendre ses produits sur Internet.",
+        "objectifs": [
+            "- Fork d'un projet GitHub",
+            "- Intégration dynamique des éléments d'une API",
+            "- Utilisation de l'API Fetch ",
+            "- Utilisation du Local Storage",
+            "- Mettre en place un plan de test de chaque page du site.",
+            "- Création de Regex pour la mise en place d'un formulaire"
         ],
-        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+        "technologies": [
+            "/images/icon/logo-technologies/html-icon.webp",
+            "/images/icon/logo-technologies/css-icon.webp",
+            "/images/icon/logo-technologies/js-icon.webp"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html",
+        "imagesPc": [
+            "/images/projet/P5/Accueil.png",
+            "/images/projet/P5/Produit.png",
+            "/images/projet/P5/Panier.png",
+            "/images/projet/P5/Commande.png"
+        ],
+        "video": "https://www.youtube.com/watch?v=MvHSpI5U-5I"
     },
     {
         "id": "aet6",
         "title": "Kasa",
-        "image": "images/icon/logo-projet/Kasa.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "technologies": [
-            "images/icon/html-icon.png",
-            "images/icon/css-icon.png",
-            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        "logo": "/images/icon/logo-projet/Kasa.webp",
+        "description": "Kasa vous recrute en tant que développeur front-end en freelance pour développer sa nouvelle plateforme web. Kasa est dans le métier de la location d’appartements entre particuliers depuis près de 10 ans maintenant.",
+        "objectifs": [
+            "- Travailler avec une maquette sur le site Figma (outil de design collaboratif)",
+            "- Ajout de routes via React Router",
+            "- Créer des composants avec React"
         ],
-        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+        "technologies": [
+            "/images/icon/logo-technologies/html-icon.webp",
+            "/images/icon/logo-technologies/css-icon.webp",
+            "/images/icon/logo-technologies/react-icon.webp"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html",
+        "imagesPc": [
+            "/images/projet/P7/Home.png",
+            "/images/projet/P7/Aboutus.png",
+            "/images/projet/P7/Lodging.png",
+            "/images/projet/P7/Error.png"
+        ],
+        "video": "https://www.youtube.com/watch?v=rvJgZRsbh3A"
     },    
     {
         "id": "qds9",
         "title": "Portfolio",
-        "image": "images/icon/logo-projet/Portfolio.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "objectif": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis dolor quis egestas dignissim. Quisque laoreet elementum nulla, vel convallis turpis euismod vitae. ",
-        "technologies": [
-            "images/icon/html-icon.png",
-            "images/icon/css-icon.png",
-            "https://cdn-icons-png.flaticon.com/512/5968/5968358.png"
+        "logo": "/images/icon/logo-projet/Portfolio.webp",
+        "description": "Création d'un e-portfolio pour une recherche d'emploi dans le Developpement Web",
+        "objectifs": [
+            "- Améliorer mes connaissances sur React via l'utilisation de hook",
+            "- Création de composant avec React",
+            "- Apprentissage de Tailwind CSS "
         ],
-        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html"
+        "technologies": [
+            "/images/icon/logo-technologies/html-icon.webp",
+            "/images/icon/logo-technologies/css-icon.webp",
+            "/images/icon/logo-technologies/react-icon.webp",
+            "/images/icon/logo-technologies/tailwind-icon.webp"
+        ],
+        "lien": "https://goro-k.github.io/Kiziltoprak_Roman_3/accueil.html",
+        "imagesPc": [
+            "/images/projet/P3/Accueil pc.png",
+            "/images/projet/P3/Menu pc.png"
+        ]
     }
 ]
