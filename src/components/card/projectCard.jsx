@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom";
 import useIntersectionObserver from "../../hook/useIntersectionObserver";
 
 function Card({ data }) {
-  const onIntersect = (entry) => {
-    entry.target.classList.add("fade-in");
-  };
-
-  const cardRef = useIntersectionObserver(onIntersect);
+  const onIntersect = (entry) => {};
+  const cardRef = useIntersectionObserver({
+    onIntersect,
+  });
   return (
     <div>
       <div
