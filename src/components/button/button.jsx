@@ -1,13 +1,13 @@
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useDarkMode from '../../hook/useDarkMode';
-import Sun from './sun.png';
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useDarkMode from "../../hook/useDarkMode";
+import Sun from "./sun.png";
 
 function Button() {
   const [colorTheme, setTheme] = useDarkMode();
   return (
     <div className="rounded-full border-solid border-black border-2 flex items-center dark:border-slate-200">
-      {colorTheme === 'light' ? (
+      {colorTheme === "light" ? (
         <img
           src={Sun}
           onClick={() => setTheme(colorTheme)}
