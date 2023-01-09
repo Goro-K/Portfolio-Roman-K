@@ -24,5 +24,5 @@ yarn-error.log*
 
 #img
 
-src/pages/home/img-cv.webp
+img-cv.webp
 public/images
