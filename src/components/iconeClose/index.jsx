@@ -1,7 +1,7 @@
 function iconeClose({ setIsActive, isActive, hidden }) {
   return (
     <div
-      className={`md:${hidden} transition duration- ease-in-out`}
+      className={`md:${hidden}`}
       onClick={() => setIsActive(!isActive)}
       role="button"
       tabIndex={0}
