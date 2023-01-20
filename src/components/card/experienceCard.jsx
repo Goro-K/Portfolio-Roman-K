@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useIntersectionObserver from "../../hook/useIntersectionObserver";
-import IconeClose from "../iconeClose/index";
 const experiences = [
   {
     image: "images/icon/logo-experience/openclassrooms.webp",
@@ -42,18 +41,17 @@ function ExperienceCard() {
         </div>
       ))}
       {isClicked ? (
-        <div className="overlay">
+        <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
           <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96">
-            <div className="flex items-center justify-between p-2">
+            <div className="flex items-center justify-between m-4">
               <h2 className="text-2xl font-bold"> OpenClassrooms </h2>
-              <IconeClose setIsActive={setIsClicked} isActive={isClicked} />
             </div>
-            <div className="ml-4 mb-4 flex justify-between items-center">
+            <div className="ml-4 mb-2 flex justify-between items-center">
               <div>
-                <p>Durée : 8 mois</p>
+                <p className="text-xl">Durée : 8 mois</p>
               </div>
             </div>
-            <div className="ml-4">
+            <div className="px-4">
               <p className="mb-4">
                 L'étude se fait à distance et les différents projets se font
                 seuls, un suivi est établi par un mentor qui peut nous aider en
