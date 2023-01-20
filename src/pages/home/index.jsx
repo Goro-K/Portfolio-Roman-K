@@ -1,7 +1,13 @@
+import { useState } from "react";
 import Gallery from "../../components/gallery/gallery";
 import ProfilCV from "./img-cv.webp";
 
 function Home() {
+  const [isClicked, setIsClicked] = useState(false);
+
+  function handleClick() {
+    setIsClicked(!isClicked);
+  }
   return (
     <div className="mx-auto bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
       <div className="flex flex-col lg:flex-row text-4xl text-slate-900 dark:text-gray-300 transition duration-500 items-center lg:justify-evenly my-6">
@@ -38,7 +44,28 @@ function Home() {
           </p>
         </div>
         <div>
-          <img src={ProfilCV} alt="" className="mt-3 lg:mt-0 h-52 rounded-lg" />
+          <img
+            src={ProfilCV}
+            alt=""
+            className="mt-3 lg:mt-0 h-52 rounded-lg"
+            onClick={handleClick}
+          />
+        </div>
+        <div>
+          {isClicked ? (
+            <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
+              <div className="bg-slate-200 dark:bg-slate-900 w-80 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
+                <div className="flex justify-center pt-4">
+                  <img src={ProfilCV} alt="" className="rounded-3xl w-60" />
+                </div>
+                <div className="flex items-center justify-between p-2">
+                  <h2>Contactez moi :</h2>
+                </div>
+                <p>Mail : romankizilt@gmail.com</p>
+                <p>Numéro : 07 50 44 77 12</p>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
 
