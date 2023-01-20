@@ -2,11 +2,33 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import ky from "ky";
 import profilImage from "./img-cv.webp";
 import Button from "../button/button";
 import IconeClose from "../iconeClose/index";
 
 function Header() {
+  // Gestion de la soumission du formulaire et gestion des valeurs des inputs, je n'utilise pas de state pour éviter les re-render
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+
+    // Fetch (POST) avec la librairie Ky
+    try {
+      const response = await ky
+        .post("http://localhost:5000/api/form", { json: values })
+        .json();
+      console.log(response);
+      alert("Le formulaire a bien été envoyé !");
+    } catch (error) {
+      console.log(error);
+      alert("Il doit manquer quelques choses");
+    }
+  };
+
+  // Pour fermer ou ouvrir la card
   const [isActive, setIsActive] = useState(false);
 
   // Pour me contacter
@@ -71,34 +93,100 @@ function Header() {
                 À Propos
               </NavLink>
               <p className="cursor-pointer" onClick={handleClick}>
-                Contact
+                Me Contacter
               </p>
             </ul>
           </div>
           <div>
             {isClicked ? (
-              <div
-                className="overlay-header"
-                onClick={() => setIsClicked(!isClicked)}
-              >
-                <div className="bg-slate-200 dark:bg-slate-900 w-80 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 shadow-2xl">
-                  <div className="flex justify-center pt-4">
-                    <img
-                      src={profilImage}
-                      alt=""
-                      className="rounded-3xl w-60"
-                    />
+              <div className="overlay-header">
+                <div className="bg-slate-200 dark:bg-slate-900 md:w-5/12 xl:w-6/12 h-auto z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
+                  <div className="flex flex-col p-3 w-full">
+                    <div className="flex justify-between">
+                      <h2>Formulaire de Contact</h2>
+                      <IconeClose
+                        setIsActive={setIsClicked}
+                        isActive={isClicked}
+                        hidden=""
+                      />
+                    </div>
+                    <form className="mt-4" onSubmit={handleSubmit}>
+                      <div className="grid justify-center xl:grid-cols-2 grid-col justify-items-end gap-4">
+                        <div>
+                          <label htmlFor="company">Société</label>{" "}
+                          <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="firstname">Prénom</label>{" "}
+                          <input
+                            type="text"
+                            id="firstname"
+                            name="firstName"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="lastname">Nom</label>{" "}
+                          <input
+                            type="text"
+                            id="lastname"
+                            name="lastName"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="email">Mail</label>{" "}
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="phone">Téléphone</label>{" "}
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="subject">Sujet</label>{" "}
+                          <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            required
+                            className="text-slate-900 rounded-md"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <label htmlFor="message">Message</label>{" "}
+                        <textarea
+                          type="text"
+                          id="message"
+                          name="message"
+                          required
+                          className="text-slate-900 rounded-md pl-1"
+                        />
+                      </div>
+                      <input type="submit" />
+                    </form>
                   </div>
-                  <div className="flex items-center justify-between p-2">
-                    <h2>Contactez moi :</h2>
-                  </div>
-                  <p>Mail : romankizilt@gmail.com</p>
-                  <p>Numéro : 07 50 44 77 12</p>
-                  <p>
-                    Vous pouvez directement m'envoyer un sms ou un mail avec le
-                    nom de votre entreprise et les informations que vous
-                    souhaiteriez me partager. J'y répondrais rapidement.
-                  </p>
                 </div>
               </div>
             ) : null}
@@ -132,10 +220,44 @@ function Header() {
                 À Propos
               </NavLink>
               <p className="cursor-pointer" onClick={handleClick2}>
-                Contact
+                Me Contacter
               </p>
             </ul>
-            <IconeClose setIsActive={setIsActive} isActive={isActive} />
+            <div
+              className={`md:hidden`}
+              onClick={() => setIsActive(!isActive)}
+              role="button"
+              tabIndex={0}
+              aria-hidden="true"
+            >
+              <span
+                className={
+                  isActive
+                    ? "first:translate-y-1 first:-rotate-45 block w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                    : "block w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                }
+              >
+                {}
+              </span>
+              <span
+                className={
+                  isActive
+                    ? "hidden w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                    : "block w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                }
+              >
+                {}
+              </span>
+              <span
+                className={
+                  isActive
+                    ? "last:-translate-y-1 last:rotate-45 block w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                    : "block w-6 h-1 m-1 transition duration-300 ease-in-out bg-slate-900 dark:bg-slate-200 rounded-lg"
+                }
+              >
+                {}
+              </span>
+            </div>
           </div>
           <div>
             {isClicked2 ? (
@@ -143,7 +265,7 @@ function Header() {
                 className="overlay"
                 onClick={() => setIsClicked2(!isClicked2)}
               >
-                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96 shadow-2xl">
+                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96 shadow-2xl flex flex-col items-center">
                   <div className="flex justify-center pt-4">
                     <img
                       src={profilImage}
@@ -156,11 +278,6 @@ function Header() {
                   </div>
                   <p>Mail : romankizilt@gmail.com</p>
                   <p>Numéro : 07 50 44 77 12</p>
-                  <p>
-                    Vous pouvez directement m'envoyer un sms ou un mail avec le
-                    nom de votre entreprise et les informations que vous
-                    souhaiteriez me partager. J'y répondrais rapidement.
-                  </p>
                 </div>
               </div>
             ) : null}
