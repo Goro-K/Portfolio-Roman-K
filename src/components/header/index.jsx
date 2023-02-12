@@ -3,7 +3,6 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import ky from "ky";
-import profilImage from "./img-cv.webp";
 import Button from "../button/button";
 import IconeClose from "../iconeClose/index";
 
@@ -111,66 +110,78 @@ function Header() {
                       />
                     </div>
                     <form className="mt-4" onSubmit={handleSubmit}>
-                      <div className="grid justify-center xl:grid-cols-2 grid-col justify-items-end gap-4">
-                        <div>
-                          <label htmlFor="company">Société</label>{" "}
+                      <div className="grid justify-center xl:grid-cols-2 grid-col gap-4 justify-items-center">
+                        <div className="flex justify-end w-72 2xl:">
+                          <label htmlFor="company" className="mr-2">
+                            Société
+                          </label>{" "}
                           <input
                             type="text"
                             id="company"
                             name="company"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="firstname">Prénom</label>{" "}
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="firstname" className="mr-2">
+                            Prénom
+                          </label>{" "}
                           <input
                             type="text"
                             id="firstname"
                             name="firstName"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="lastname">Nom</label>{" "}
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="lastname" className="mr-2">
+                            Nom
+                          </label>{" "}
                           <input
                             type="text"
                             id="lastname"
                             name="lastName"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="email">Mail</label>{" "}
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="email" className="mr-2">
+                            Mail
+                          </label>{" "}
                           <input
                             type="email"
                             id="email"
                             name="email"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="phone">Téléphone</label>{" "}
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="phone" className="mr-2">
+                            Téléphone
+                          </label>{" "}
                           <input
                             type="tel"
                             id="phone"
                             name="phone"
                             pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
-                        <div>
-                          <label htmlFor="subject">Sujet</label>{" "}
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="subject" className="mr-2">
+                            Sujet
+                          </label>{" "}
                           <input
                             type="text"
                             id="subject"
                             name="subject"
                             required
-                            className="text-slate-900 rounded-md"
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
                         </div>
                       </div>
@@ -213,7 +224,7 @@ function Header() {
       </div>
       {/* Hamburger  */}
       {isActive ? (
-        <div className="transition-all duration-500 relative md:hidden bg-gray-200 dark:bg-slate-900 px-8 pt-2">
+        <div className="transition-all duration-500 relative md:hidden bg-gray-200 dark:bg-slate-900 px-8 pt-2 shadow-sm dark:shadow-slate-500">
           <div className="flex justify-between">
             <ul className="flex flex-col">
               <NavLink className="visited:font-bold " to="/">
@@ -261,23 +272,106 @@ function Header() {
           </div>
           <div>
             {isClicked2 ? (
-              <div
-                className="overlay"
-                onClick={() => setIsClicked2(!isClicked2)}
-              >
-                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96 shadow-2xl flex flex-col items-center">
-                  <div className="flex justify-center pt-4">
-                    <img
-                      src={profilImage}
-                      alt=""
-                      className="rounded-3xl w-60"
-                    />
+              <div className="overlay">
+                <div className="bg-slate-200 dark:bg-slate-900 md:w-5/12 xl:w-6/12 h-auto z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
+                  <div className="flex flex-col p-3 w-full">
+                    <div className="flex justify-between">
+                      <h2>Formulaire de Contact</h2>
+                      <IconeClose
+                        setIsActive={setIsClicked2}
+                        isActive={isClicked2}
+                        hidden=""
+                      />
+                    </div>
+                    <form className="mt-4" onSubmit={handleSubmit}>
+                      <div className="grid justify-center xl:grid-cols-2 grid-col gap-4 justify-items-center">
+                        <div className="flex justify-end w-72 2xl:">
+                          <label htmlFor="company" className="mr-2">
+                            Société
+                          </label>{" "}
+                          <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="firstname" className="mr-2">
+                            Prénom
+                          </label>{" "}
+                          <input
+                            type="text"
+                            id="firstname"
+                            name="firstName"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="lastname" className="mr-2">
+                            Nom
+                          </label>{" "}
+                          <input
+                            type="text"
+                            id="lastname"
+                            name="lastName"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="email" className="mr-2">
+                            Mail
+                          </label>{" "}
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="phone" className="mr-2">
+                            Téléphone
+                          </label>{" "}
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                        <div className="flex justify-end w-72">
+                          <label htmlFor="subject" className="mr-2">
+                            Sujet
+                          </label>{" "}
+                          <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            required
+                            className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col w-full">
+                        <label htmlFor="message">Message</label>{" "}
+                        <textarea
+                          type="text"
+                          id="message"
+                          name="message"
+                          required
+                          className="text-slate-900 rounded-md pl-1"
+                        />
+                      </div>
+                      <input type="submit" />
+                    </form>
                   </div>
-                  <div className="flex items-center justify-between p-2">
-                    <h2>Contactez moi :</h2>
-                  </div>
-                  <p>Mail : romankizilt@gmail.com</p>
-                  <p>Numéro : 07 50 44 77 12</p>
                 </div>
               </div>
             ) : null}
