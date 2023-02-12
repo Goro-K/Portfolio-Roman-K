@@ -35,6 +35,21 @@ body::-webkit-scrollbar {
   opacity: 0;
 }
 
+.swiper-project {
+  width: 50% !important;
+}
+
+@media (max-width: 1536px) {
+  .swiper-project {
+    width: 100% !important;
+  }
+}
+.slide-projet {
+  width: 400px !important;
+}
+.slide-tech {
+  width: 170px !important;
+}
 .overlay {
   position: fixed; /* pour couvrir toute la page */
   top: 0;
