@@ -1,5 +1,5 @@
 Portfolio de Roman Kiziltoprak
 
-Projet mis en place avec React et TailwindCSS.
+Le projet sera bientot hébergé, il est actuellement en cours de développement, le passage de JS à TS devrait bien être mis en place.
 
-Mes différents projets sont présentés dans la page web, de plus les technologies que j'utilises y sont aussi présentés.
+Ce site web servira de présentation de mes compétences et des différents projets sur lesquelles j'ai pu travailler.
