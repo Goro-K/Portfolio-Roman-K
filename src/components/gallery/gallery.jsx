@@ -1,143 +1,234 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import PropTypes from "prop-types";
-import ProjectCard from "../card/projectCard";
-import CompetenceCard from "../card/competenceCard";
-import ExperienceCard from "../card/experienceCard";
-import Technologie from "../../technologie.json";
-import Projects from "../../projects.json";
+import ky from "ky";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper";
+import useIntersectionObserver from "../../hook/useIntersectionObserver";
 
-function Gallery({ index }) {
-  // state qui concerne le defilement des cards
-  const maxScrollWidth = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0); // currentIndex défini la position du slide
-  const gallery = useRef(null);
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { NavLink } from "react-router-dom";
 
-  const movePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
-    }
-  };
-
-  // offsetWidth => Renvoie la largeur totale d'un élément.
-  const moveNext = () => {
-    if (
-      gallery.current !== null &&
-      gallery.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
-      setCurrentIndex((prevState) => prevState + 1);
-    }
-  };
-
-  const isDisabled = (direction) => {
-    if (direction === "prev") {
-      return currentIndex <= 0;
-    }
-
-    if (direction === "next" && gallery.current !== null) {
-      return (
-        gallery.current.offsetWidth * currentIndex >= maxScrollWidth.current
-      );
-    }
-
-    return false;
-  };
-
+function Gallery() {
+  // Variables d'état pour les données de projet
+  const [projectData, setProjectData] = useState([]);
+  const [technologieData, setTechnologieData] = useState([]);
+  const [experienceData, setExperienceData] = useState([])
+  // Fetch de l'api avec les différents projets
   useEffect(() => {
-    if (gallery !== null && gallery.current !== null) {
-      gallery.current.scrollLeft = gallery.current.offsetWidth * currentIndex;
-    }
-  }, [currentIndex]);
-
-  useEffect(() => {
-    maxScrollWidth.current = gallery.current
-      ? gallery.current.scrollWidth - gallery.current.offsetWidth
-      : 0;
+    const fetchData = async () => {
+      try {
+        const [project, technologie, experience] = await Promise.all([
+          ky.get("http://localhost:5000/api/project").json(),
+          ky.get("http://localhost:5000/api/technologie").json(),
+          ky.get("http://localhost:5000/api/experience").json(),
+        ]);
+        setProjectData(project);
+        setTechnologieData(technologie);
+        setExperienceData(experience);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
   }, []);
 
+  // Gestion du Clic sur une card
+  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked2, setIsClicked2] = useState(false); // Pour que l'animate-pulse de la card experience ne réagisse pas si je clique sur une card technologie
+  const [data, setIsData] = useState(null)
+
+  function handleData(data) {
+    setIsData(data.name);
+    setIsClicked(!isClicked);
+    setIsClicked2(!isClicked2);
+  }
+
+  //Gestion de Intersection Observer
+
+  const onIntersect = (entry) => {};
+
+  const cardIntersect = useIntersectionObserver({
+    onIntersect,
+  });
   return (
     <div>
-      <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
-        {index === 1
-          ? "Projets"
-          : index === 2
-          ? "Compétences"
-          : index === 3
-          ? "Experiences"
-          : null}
-      </h2>
-      <div className="relative overflow-hidden h-full">
-        <div className="flex justify-between absolute top left w-full h-full ">
-          <button
-            type="submit"
-            onClick={movePrev}
-            className="hover:bg-blue-900/75 text-white w-10 h-full z-30 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("prev")}
+      <div>
+        <div>
+          <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+            Projets
+          </h2>
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            spaceBetween={10}
+            slidesPerView="auto"
+            slidesPerGroup={1}
+            grabCursor={true}
+            navigation={{
+              clickable: true,
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            className="swiper"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-20 -ml-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            <span className="sr-only">Prev</span>
-          </button>
-          <button
-            type="submit"
-            onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full z-30 text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("next")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-12 w-20 -ml-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </button>
+            {projectData.map((projet, index) => (
+              <SwiperSlide key={`projet n°${index + 1}`} className="slide-projet">
+                <div>
+                  <div ref={cardIntersect} className="hover:animate-pulse">
+                    <NavLink to={`/projet/${projet.id}`} aria-label={`${projet.title}`}>
+                      <div>
+                        <img
+                          src={projet.logo}
+                          alt=""
+                          className="lg:w-400px aspect-square rounded-2xl lg:h-400px md:h-80 md:w-80"
+                        />
+                      </div>
+                    </NavLink>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-        {index === 1 ? (
+        <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+          Compétences
+        </h2>
+        <div className="competence">
+        {technologieData.map((technologie, index) => (
+          technologie.name === data && isClicked ? (
+        <div key={`technologie n°${index + 1}`}>
           <div
-            className="flex gap-4 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
-            ref={gallery}
+            className="overlay"
+            onClick={() => setIsClicked(!isClicked)}
           >
-            {Projects.map((projet) => (
-              <ProjectCard data={projet} key={projet.id} />
+            <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto mb-2 pr-4 z-50 rounded-lg dark:text-slate-200 sm:w-96">
+              <div className="flex items-center justify-between m-2">
+                <h2 className="text-4xl font-bold"> {technologie.name} </h2>
+              </div>
+              <div className="m-4 flex justify-between items-center">
+                <div>
+                  <p> Utilisé dans : </p>
+                  <ul>
+                    {technologie.usedFor.map((used, index) => (
+                      <li key={`utilisé - ${index}`}>{used}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <img src={technologie.image} alt="" className="h-20" />
+                </div>
+              </div>
+              <div className="ml-4">
+                <p className="text">Connaissance de la technologie : </p>
+                <ul>
+                  {technologie.knowledge.map((knowledge, index) => (
+                    <li key={`connaissance - ${index}`}>{knowledge}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null))}
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            slidesPerView= "auto"
+            spaceBetween= {10}
+            slidesPerGroup= {3}
+            grabCursor={true}
+            navigation={{
+              prevEl: ".swiper-previous-button",
+              nextEl: ".swiper-next-button",
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            className="swiper z-20 h-full"
+          >
+            {technologieData.map((technologie, index) => (
+              <SwiperSlide key={`technologie n°${index + 1}`} className="slide-tech">
+      <div
+        className={`${
+          technologie.name === data && isClicked
+            ? "animate-pulse text-center z-10 relative h-40 w-40 snap-start cursor-pointer"
+            : "hover:animate-pulse text-center z-20 relative h-40 w-40 snap-start cursor-pointer"
+        }`}
+        onClick={() => handleData(technologie)}
+        ref={cardIntersect}
+      >
+        <div>
+          <img src={technologie.image} alt="" className="h-40 w-40"/>
+        </div>
+      </div>
+              </SwiperSlide>
             ))}
+          </Swiper>
+        </div>
+        <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+          Experience
+        </h2>
+        <div>
+        {experienceData.map( (experience, index) => (
+        experience.name === data && isClicked2 ? (
+          <div className="overlay" onClick={() => setIsClicked2(!isClicked2)} key={`technologie n°${index + 1}`}>
+            <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96">
+              <div className="flex items-center justify-between m-4">
+                <h2 className="text-2xl font-bold"> {experience.name} </h2>
+              </div>
+              <div className="ml-4 mb-2 flex justify-between items-center">
+                <div>
+                  <p className="text-xl">{experience.durée}</p>
+                </div>
+              </div>
+              <div className="px-4">
+                <p className="mb-4">
+                  {experience.méthode}
+                </p>
+                <p>
+                  {experience.tech_learnt}
+                </p>
+              </div>
+            </div>
           </div>
-        ) : index === 2 ? (
-          <div
-            className="flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
-            ref={gallery}
+        ) : null
+        ))
+      }
+          <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            spaceBetween={10}
+            slidesPerView={4}
+            slidesPerGroup={2}
+            grabCursor={true}
+            navigation={{
+              prevEl: ".swiper-previous-button",
+              nextEl: ".swiper-next-button",
+            }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            className="swiper"
           >
-            {Technologie.map((technologie) => (
-              <CompetenceCard data={technologie} key={technologie.id} />
-            ))}
-          </div>
-        ) : index === 3 ? (
-          <div
-            className="flex gap-3 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-10 my-6"
-            ref={gallery}
-          >
-            <ExperienceCard />
-          </div>
-        ) : null}
+            
+            {experienceData.map((experience, index) => (
+              <SwiperSlide key={`experience n°${index + 1}`}>
+        <div
+          className={`${
+            experience.name === data && isClicked2
+              ? "animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer"
+              : "hover:animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer card"
+          }`}
+          onClick={() => handleData(experience)}
+          ref={cardIntersect}
+        >
+          <img
+            src={experience.image}
+            alt=""
+            className="w-full aspect-square rounded-2xl"
+          />
+        </div>
+          </SwiperSlide>))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );
