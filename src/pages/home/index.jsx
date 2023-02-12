@@ -43,7 +43,7 @@ function Home() {
             vous invite à cliquer sur les projets ci-dessous.
           </p>
         </div>
-        <div>
+        <div className="cursor-pointer">
           <img
             src={ProfilCV}
             alt=""
@@ -51,7 +51,7 @@ function Home() {
             onClick={handleClick}
           />
         </div>
-        <div>
+        <div className="text-base">
           {isClicked ? (
             <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
               <div className="bg-slate-200 dark:bg-slate-900 w-80 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
@@ -69,9 +69,7 @@ function Home() {
         </div>
       </div>
 
-      <Gallery index={1} />
-      <Gallery index={2} />
-      <Gallery index={3} />
+      <Gallery />
     </div>
   );
 }
