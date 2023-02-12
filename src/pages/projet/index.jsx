@@ -1,20 +1,42 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
-import Projects from "../../projects.json";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper";
+import ky from "ky";
 import Error from "../error/index";
+import { useEffect, useState } from "react";
+import "../../index.css"
 
 function Projet() {
+  // Variables d'état pour les données de projet
+  const [projectData, setProjectData] = useState([]);
+  // Fetch de l'api avec les différents projets
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const project = await ky
+          .get("http://localhost:5000/api/project")
+          .json();
+        setProjectData(project);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // On recupére l'id dans le lien et le compare à l'id du projet
   const params = useParams();
-  const project = Projects.find((project) => project.id === params.id);
+  const project = projectData.find((project) => project.id === params.id);
 
   return project ? (
-    <div className="px-8 text-slate-900 dark:text-gray-300 bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
+    <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
       <NavLink to="/">
         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />À Propos
       </NavLink>
       <div className="md:flex-none">
-        <div className=" mt-2 md:mt-0 w-3/4 text-center md:w-64 md:float-right mx-10 mb-6">
+        <div className=" mt-2 md:mt-0 w-3/4 text-center md:w-64 md:float-right mx-10">
           <img
             src={project.logo}
             alt=""
@@ -45,11 +67,12 @@ function Projet() {
           ) : null}
         </div>
       </div>
-      <div className="my-6">
+      <div className="h-1/3">
+      <div className="my-10">
         <h2 className="text-xl font-bold">Description</h2>
         <p>{project.description}</p>
       </div>
-      <div className="my-6">
+      <div className="my-10">
         <h2 className="text-xl font-bold">Objectif</h2>
         <div>
           {project.objectifs.map((objectif, index) => (
@@ -57,18 +80,30 @@ function Projet() {
           ))}
         </div>
       </div>
-      <div className="mt-10">
+      </div>
+      <div className="mt-14">
         <h2 className="text-2xl font-bold my-2">Image du site</h2>
-        <div className="bg-slate-500 dark:bg-slate-400 grid grid-cols-2 gap-4 w-full rounded-xl p-2">
+        <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            spaceBetween={10}
+            slidesPerView="auto"
+            slidesPerGroup={1}
+            grabCursor={true}
+            className="swiper"
+            navigation={      
+            {clickable: true,}}
+          >
           {project.imagesPc.map((image, index) => (
+            <SwiperSlide key={`Site web pages ${index + 1}`} className="swiper-project">
             <img
               src={image}
               alt=""
-              className="rounded-xl h-full"
-              key={`Site web pages ${index + 1}`}
+              className="rounded-xl h-60 md:h-80 lg:h-96 w-full object-contain"
             />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   ) : (
