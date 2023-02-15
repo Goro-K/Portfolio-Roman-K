@@ -80,6 +80,28 @@ body::-webkit-scrollbar {
   flex-direction: column;
 }
 
+.glass-header {
+  display: flex;
+  align-items: center;
+}
+
+.glass-home {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .glass-header {
+    display: none;
+  }
+}
+@media (min-width: 500px) {
+  .glass-home {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .overlay-header {
     display: none;
