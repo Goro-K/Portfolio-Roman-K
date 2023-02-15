@@ -8,7 +8,7 @@ import "./index.css";
 // Pages and components
 import Home from "./pages/home/index";
 import Projet from "./pages/projet/index";
-import Header from "./components/header";
+
 import Error from "./pages/error/index";
 import Footer from "./components/footer/index";
 
@@ -17,7 +17,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projet/:id" element={<Projet />} />
