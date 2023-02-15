@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper";
 import ky from "ky";
 import Error from "../error/index";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../index.css"
 
 function Projet() {
@@ -19,8 +19,8 @@ function Projet() {
           .get("http://localhost:5000/api/project")
           .json();
         setProjectData(project);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     fetchData();
@@ -99,7 +99,7 @@ function Projet() {
             <img
               src={image}
               alt=""
-              className="rounded-xl h-60 md:h-80 lg:h-96 w-full object-contain"
+              className="h-60 md:h-80 lg:h-96 w-full object-contain"
             />
             </SwiperSlide>
           ))}
