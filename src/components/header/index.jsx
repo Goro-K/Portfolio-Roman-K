@@ -5,8 +5,9 @@ import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import ky from "ky";
 import Button from "../button/button";
 import IconeClose from "../iconeClose/index";
+import SearchBar from "../searchBar/searchBar";
 
-function Header() {
+function Header({setSearchTerm}) {
   // Gestion de la soumission du formulaire et gestion des valeurs des inputs, je n'utilise pas de state pour éviter les re-render
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,14 +88,14 @@ function Header() {
               </span>
             </div>
             {/* Header de base */}
-            <ul className="hidden md:flex gap-5 mx-3">
+            <div className="hidden md:flex gap-5 mx-3">
               <NavLink className="visited:font-bold " to="/">
                 À Propos
               </NavLink>
               <p className="cursor-pointer" onClick={handleClick}>
                 Me Contacter
               </p>
-            </ul>
+            </div>
           </div>
           <div>
             {isClicked ? (
@@ -202,18 +203,20 @@ function Header() {
               </div>
             ) : null}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3"> 
+            <SearchBar setSearchTerm={setSearchTerm} glassHeader = "glass-header"/>
             <Button />
             <a
               href="https://linkedin.com/in/roman-kiziltoprak-247338182/"
               target="blank"
+              aria-label="linkedin"
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
                 className="text-3xl hover:text-blue-500"
               />
             </a>
-            <a href="https://github.com/Goro-K" target="blank">
+            <a href="https://github.com/Goro-K" target="blank" aria-label="github">
               <FontAwesomeIcon
                 icon={faGithub}
                 className="text-3xl hover:text-white"
@@ -221,19 +224,20 @@ function Header() {
             </a>
           </div>
         </nav>
+        <SearchBar setSearchTerm={setSearchTerm} glassHome="glass-home"/> 
       </div>
       {/* Hamburger  */}
       {isActive ? (
         <div className="transition-all duration-500 relative md:hidden bg-gray-200 dark:bg-slate-900 px-8 pt-2 shadow-sm dark:shadow-slate-500">
           <div className="flex justify-between">
-            <ul className="flex flex-col">
+            <div className="flex flex-col">
               <NavLink className="visited:font-bold " to="/">
                 À Propos
               </NavLink>
               <p className="cursor-pointer" onClick={handleClick2}>
                 Me Contacter
               </p>
-            </ul>
+            </div>
             <div
               className={`md:hidden`}
               onClick={() => setIsActive(!isActive)}
