@@ -18,6 +18,16 @@ module.exports = {
       width: {
         "400px": "400px"
       },
+      keyframes: {
+        appear: {
+          "0%" : { opacity: "0"},
+          "50%": { opacity: "0.5"},
+          "100%": { opacity: "1"}
+        }
+      },
+      animation: {
+        appear: "appear 1s ease-in-out forwards"
+      }
     },
   },
   plugins: [],
