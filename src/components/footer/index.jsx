@@ -10,13 +10,14 @@ function Footer() {
             <a
               href="https://linkedin.com/in/roman-kiziltoprak-247338182/"
               target="blank"
+              aria-label="linkedin"
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
                 className="text-3xl hover:text-blue-500"
               />
             </a>
-            <a href="https://github.com/Goro-K" target="blank">
+            <a href="https://github.com/Goro-K" target="blank" aria-label="github">
               <FontAwesomeIcon
                 icon={faGithub}
                 className="text-3xl hover:text-white"
