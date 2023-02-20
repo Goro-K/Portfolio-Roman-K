@@ -2,12 +2,15 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import ky from "ky";
 import Button from "../button/button";
 import IconeClose from "../iconeClose/index";
 import SearchBar from "../searchBar/searchBar";
 
-function Header({setSearchTerm}) {
+function Header({setSearchTerm, setIsWriting }) {
+
+  const [success, setSuccess] = useState(false);
   // Gestion de la soumission du formulaire et gestion des valeurs des inputs, je n'utilise pas de state pour éviter les re-render
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,15 +24,14 @@ function Header({setSearchTerm}) {
         .post("http://localhost:5000/api/form", { json: values })
         .json();
       console.log(response);
-      alert("Le formulaire a bien été envoyé !");
+      setSuccess(true)
     } catch (error) {
-      console.log(error);
-      alert("Il doit manquer quelques choses");
+      alert("Il doit y avoir une erreur dans les champs enregistré")
     }
   };
 
   // Pour fermer ou ouvrir la card
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(null);
 
   // Pour me contacter
   const [isClicked, setIsClicked] = useState(false);
@@ -169,6 +171,7 @@ function Header({setSearchTerm}) {
                             id="phone"
                             name="phone"
                             pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$"
+                            placeholder="+33X XX ou 0X XX"
                             required
                             className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
@@ -199,12 +202,19 @@ function Header({setSearchTerm}) {
                       <input type="submit" />
                     </form>
                   </div>
+                  {success ? (
+                    <div className="">
+                      <p><FontAwesomeIcon icon={faCircleCheck} className="mr-1"/> Le formulaire à bien été reçue ! </p>
+                    </div>
+                  )
+                    : null
+                  }
                 </div>
               </div>
             ) : null}
           </div>
           <div className="flex items-center gap-3"> 
-            <SearchBar setSearchTerm={setSearchTerm} glassHeader = "glass-header"/>
+            <SearchBar setSearchTerm={setSearchTerm} setIsWriting={setIsWriting} glassHeader = "glass-header"/>
             <Button />
             <a
               href="https://linkedin.com/in/roman-kiziltoprak-247338182/"
@@ -224,7 +234,7 @@ function Header({setSearchTerm}) {
             </a>
           </div>
         </nav>
-        <SearchBar setSearchTerm={setSearchTerm} glassHome="glass-home"/> 
+        <SearchBar setSearchTerm={setSearchTerm} setIsWriting={setIsWriting} glassHome="glass-home"/> 
       </div>
       {/* Hamburger  */}
       {isActive ? (
@@ -346,6 +356,7 @@ function Header({setSearchTerm}) {
                             id="phone"
                             name="phone"
                             pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$"
+                            placeholder="+33X XX ou 0X XX"
                             required
                             className="text-slate-900 rounded-md shadow-md dark:shadow-stone-500"
                           />
@@ -376,6 +387,13 @@ function Header({setSearchTerm}) {
                       <input type="submit" />
                     </form>
                   </div>
+                  {success ? (
+                    <div className="">
+                      <p><FontAwesomeIcon icon={faCircleCheck} className="mr-1"/> Le formulaire à bien été reçue ! </p>
+                    </div>
+                  )
+                    : null
+                  }
                 </div>
               </div>
             ) : null}
