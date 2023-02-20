@@ -18,23 +18,6 @@ body::-webkit-scrollbar {
   background-color: rgba(228, 227, 227, 0.4);
 }
 
-.sun {
-  width: 36px;
-}
-
-.card {
-  opacity: 0;
-  transition: opacity 2s;
-}
-
-.card.fade-in {
-  opacity: 1;
-}
-
-.card.fade-out {
-  opacity: 0;
-}
-
 .swiper-project {
   width: 50% !important;
 }
@@ -78,6 +61,25 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.search-bar-open {
+  max-width: 200px;
+  transition: max-width 0.3s ease-in-out;
+}
+
+.search-bar-close {
+  max-width: 0;
+  transition: max-width 0.3s ease-in-out;
+}
+
+.success-notif {
+  max-height: 30px;
+  transition: max-height 1.5s ease-in-out;
+}
+
+.success-notif-close {
+  max-height: 0;
 }
 
 .glass-header {
