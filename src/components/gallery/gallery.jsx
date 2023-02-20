@@ -21,53 +21,58 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
   }
 
   return (
-    <>
+    <div className="min-h-screen">
       <div className="animate-appear">
-        <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+        {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
           Projets
-        </h2>
+        </h2> }
         <Swiper
           // install Swiper modules
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={10}
           slidesPerView="auto"
-          slidesPerGroup={2}
+          slidesPerGroup={1}
           grabCursor={true}
-          navigation={{
-            clickable: true,
-          }}
-          pagination={{ clickable: true, dynamicBullets: true }}
           className="swiper"
         >
-          {projectData.map((projet, index) => (
-            <SwiperSlide key={`projet n°${index + 1}`} className="slide-projet">
-              <>
-                <div className="hover:animate-pulse">
-                  <NavLink
-                    to={`/projet/${projet.id}`}
-                    aria-label={`${projet.title}`}
-                  >
-                    <img
-                      src={projet.logo}
-                      alt=""
-                      className="rounded-2xl h-80 w-80"
-                    />
-                  </NavLink>
-                </div>
-              </>
-            </SwiperSlide>
-          ))}
+          {projectData
+            .filter((value) => {
+              return value.title
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
+            })
+            .map((projet, index) => (
+              <SwiperSlide
+                key={`projet n°${index + 1}`}
+                className="slide-projet"
+              >
+                <>
+                  <div className="hover:animate-pulse">
+                    <NavLink
+                      to={`/projet/${projet.id}`}
+                      aria-label={`${projet.title}`}
+                    >
+                      <img
+                        src={projet.logo}
+                        alt=""
+                        className="rounded-2xl h-80 w-80 my-3"
+                      />
+                    </NavLink>
+                  </div>
+                </>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
-      <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+      {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
         Compétences
-      </h2>
-      <div className="competence">
+      </h2> }
+      <div>
         {technologieData.map((technologie, index) =>
           technologie.name === data && isClicked ? (
             <div key={`technologie n°${index + 1}`}>
               <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
-                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto mb-2 pr-4 z-50 rounded-lg dark:text-slate-200 sm:w-96">
+                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto mb-2 pr-4 z-50 rounded-lg dark:text-slate-200 sm:w-96 pb-4 pt-1 pl-1">
                   <div className="flex items-center justify-between m-2">
                     <h2 className="text-4xl font-bold"> {technologie.name} </h2>
                   </div>
@@ -81,7 +86,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
                       </ul>
                     </div>
                     <div>
-                      <img src={technologie.image} alt="" className="h-20" />
+                      <img src={technologie.image} alt="" className="h-20 my-3" />
                     </div>
                   </div>
                   <div className="ml-4">
@@ -104,11 +109,6 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
           spaceBetween={10}
           slidesPerGroup={3}
           grabCursor={true}
-          navigation={{
-            prevEl: ".swiper-previous-button",
-            nextEl: ".swiper-next-button",
-          }}
-          pagination={{ clickable: true, dynamicBullets: true }}
           className="swiper z-20 h-full"
         >
           {technologieData
@@ -138,9 +138,10 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
             ))}
         </Swiper>
       </div>
-      <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+      
+      {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
         Experience
-      </h2>
+      </h2> }
       <div>
         {experienceData.map((experience, index) =>
           experience.name === data && isClicked2 ? (
@@ -173,34 +174,35 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
           slidesPerView={4}
           slidesPerGroup={2}
           grabCursor={true}
-          navigation={{
-            prevEl: ".swiper-previous-button",
-            nextEl: ".swiper-next-button",
-          }}
-          pagination={{ clickable: true, dynamicBullets: true }}
           className="swiper"
         >
-          {experienceData.map((experience, index) => (
-            <SwiperSlide key={`experience n°${index + 1}`}>
-              <div
-                className={`${
-                  experience.name === data && isClicked2
-                    ? "animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer"
-                    : "hover:animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer"
-                }`}
-                onClick={() => handleData(experience)}
-              >
-                <img
-                  src={experience.image}
-                  alt=""
-                  className="w-full aspect-square rounded-2xl"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
+          {experienceData
+            .filter((value) => {
+              return value.name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
+            })
+            .map((experience, index) => (
+              <SwiperSlide key={`experience n°${index + 1}`}>
+                <div
+                  className={`${
+                    experience.name === data && isClicked2
+                      ? "animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer"
+                      : "hover:animate-pulse text-center relative h-56 w-56 lg:h-72 lg:w-72 snap-start cursor-pointer"
+                  }`}
+                  onClick={() => handleData(experience)}
+                >
+                  <img
+                    src={experience.image}
+                    alt=""
+                    className="w-full aspect-square rounded-2xl my-3"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }
 export default Gallery;
