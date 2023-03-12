@@ -9,7 +9,6 @@ import "./index.css";
 import Home from "./pages/home/index";
 import Projet from "./pages/projet/index";
 import Error from "./pages/error/index";
-import Footer from "./components/footer/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,7 +20,6 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/projet/:id" element={<Projet />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   </React.StrictMode>
 );
