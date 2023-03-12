@@ -1,5 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom";
+import Footer from "../../components/footer";
 import Header from "../../components/header";
 
 export default function Error() {
@@ -11,6 +12,7 @@ export default function Error() {
       <h2 className="text-3xl mb-10 lg:text-5xl"> La page que vous recherchez est inexistante !</h2>
       <NavLink to="/" className="text-2xl mt-20 lg:text-4xl"> Retourner sur la page d'accueil </NavLink>
     </div>
+    <Footer />
     </>
   );
 }

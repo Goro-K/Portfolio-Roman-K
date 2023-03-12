@@ -21,15 +21,17 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="animate-appear">
-        {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
-          Projets
-        </h2> }
+    <div className=" min-h-screen animate-appear bg-lightGallery dark:bg-darkGallery py-10 text-darkHeadline pl-4 sm:pl-10">
+      <div>
+        {searchTerm ? null : 
+          <h2 className="mb-6 text-xl font-bold p-1 rounded-md bg-lightBtnGallery dark:bg-darkBtnGallery w-max">
+            Projets
+          </h2>
+}
         <Swiper
           // install Swiper modules
           modules={[Navigation, Pagination, A11y]}
-          spaceBetween={10}
+          spaceBetween={20}
           slidesPerView="auto"
           slidesPerGroup={1}
           grabCursor={true}
@@ -55,7 +57,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
                       <img
                         src={projet.logo}
                         alt=""
-                        className="rounded-2xl h-80 w-80 my-3"
+                        className="rounded-2xl sm:h-80 sm:w-80 h-60 w-60 my-3 mb-6"
                       />
                     </NavLink>
                   </div>
@@ -64,15 +66,15 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
             ))}
         </Swiper>
       </div>
-      {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+      {searchTerm ? null : <h2 className="mb-10 text-xl font-bold p-1 rounded-md bg-lightBtnGallery dark:bg-darkBtnGallery w-max">
         Compétences
       </h2> }
-      <div>
+      <div className="">
         {technologieData.map((technologie, index) =>
           technologie.name === data && isClicked ? (
             <div key={`technologie n°${index + 1}`}>
               <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
-                <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto mb-2 pr-4 z-50 rounded-lg dark:text-slate-200 sm:w-96 pb-4 pt-1 pl-1">
+                <div className="bg-lightGallery text-lightHeadline dark:bg-darkGallery dark:text-darkHeadline w-72 h-auto mb-2 pr-4 z-50 rounded-lg sm:w-96 pb-4 pt-1 pl-1">
                   <div className="flex items-center justify-between m-2">
                     <h2 className="text-4xl font-bold"> {technologie.name} </h2>
                   </div>
@@ -107,7 +109,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
           modules={[Navigation, Pagination, A11y]}
           slidesPerView="auto"
           spaceBetween={10}
-          slidesPerGroup={3}
+          slidesPerGroup={2}
           grabCursor={true}
           className="swiper z-20 h-full"
         >
@@ -131,7 +133,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
                   onClick={() => handleData(technologie)}
                 >
                   <div>
-                    <img src={technologie.image} alt="" className="h-40 w-40" />
+                    <img src={technologie.image} alt="" className="h-40 w-40 mb-6" />
                   </div>
                 </div>
               </SwiperSlide>
@@ -139,7 +141,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
         </Swiper>
       </div>
       
-      {searchTerm ? null : <h2 className="ml-8 my-5 text-slate-800 dark:text-slate-200 text-xl font-bold">
+      {searchTerm ? null : <h2 className="mb-6 mt-5 text-xl font-bold p-1 rounded-md bg-lightBtnGallery dark:bg-darkBtnGallery w-max">
         Experience
       </h2> }
       <div>
@@ -150,7 +152,7 @@ function Gallery({ projectData, experienceData, technologieData, searchTerm }) {
               onClick={() => setIsClicked2(!isClicked2)}
               key={`technologie n°${index + 1}`}
             >
-              <div className="bg-slate-200 dark:bg-slate-900 w-72 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 sm:w-96">
+              <div className="bg-lightGallery text-lightHeadline dark:bg-darkGallery dark:text-darkHeadline w-72 h-auto pb-2 pr-1 z-50 rounded-lg sm:w-96">
                 <div className="flex items-center justify-between m-4">
                   <h2 className="text-2xl font-bold"> {experience.name} </h2>
                 </div>

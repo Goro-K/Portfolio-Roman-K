@@ -7,6 +7,7 @@ import ky from "ky";
 import Error from "../error/index";
 import React, { useEffect, useState } from "react";
 import "../../index.css"
+import Footer from "../../components/footer";
 
 function Projet() {
   // Variables d'état pour les données de projet
@@ -105,6 +106,7 @@ function Projet() {
           ))}
         </Swiper>
       </div>
+      <Footer />
     </div>
   ) : (
     <Error />

@@ -29,7 +29,7 @@ function SearchBar({setSearchTerm, glassHeader, glassHome, setIsWriting}) {
             <BsSearch onClick={() => setIsClicked(!isClicked)} className="w-6 h-6 ml-2 mr-1"/> 
             </button>
             <input 
-                className={isClicked ? "text-slate-900 p-1 mx-0.5 rounded-md focus:outline-none w-full search-bar-open" : " py-1 mx-0.5 rounded-md search-bar-close"}
+                className={isClicked ? "text-slate-900 p-1 mx-0.5 rounded-md focus:outline-none shadow-inner focus:shadow-lightGallery w-full search-bar-open" : "py-1 mx-0.5 rounded-md search-bar-close"}
                 type="text" 
                 placeholder="Projets, Technos, Exp..."
                 onChange={handleSearchTerm}/>

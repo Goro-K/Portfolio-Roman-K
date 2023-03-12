@@ -3,6 +3,7 @@ import Gallery from "../../components/gallery/gallery";
 import ProfilCV from "./img-cv.webp";
 import ky from "ky";
 import Header from "../../components/header/index";
+import Footer from "../../components/footer";
 
 function Home() {
   // State pour stocker les données de l'api
@@ -42,7 +43,7 @@ function Home() {
     <>
       <Header setSearchTerm={setSearchTerm} setIsWriting={setIsWriting} />
       {isWriting ? (
-        <div className="mx-auto bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
+        <div className="mx-auto bg-lightBg dark:bg-darkBg transition duration-500">
           <Gallery
             projectData={projectData}
             technologieData={technologieData}
@@ -55,7 +56,7 @@ function Home() {
           <div className="text-base">
             {isClicked ? (
               <div className="overlay" onClick={() => setIsClicked(!isClicked)}>
-                <div className="bg-slate-200 dark:bg-slate-900 w-80 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
+                <div className="bg-lightBg dark:bg-darkBg w-80 h-auto pb-2 pr-1 z-50 rounded-lg dark:text-slate-200 shadow-2xl flex flex-col items-center">
                   <div className="flex justify-center pt-4">
                     <img src={ProfilCV} alt="" className="rounded-3xl w-60" />
                   </div>
@@ -68,16 +69,18 @@ function Home() {
               </div>
             ) : null}
           </div>
-          <div className="mx-auto bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
-            <div className="flex flex-col lg:flex-row text-4xl text-slate-900 dark:text-gray-300 transition duration-500 items-center lg:justify-evenly my-6 animate-appear">
+          <div className="mx-auto bg-lightBg dark:bg-darkBg">
+            <div className="flex flex-col lg:flex-row text-4xl 
+            text-slate-900 dark:text-darkHeadline 
+            items-center lg:justify-evenly animate-appear py-12 gap-8">
               <div className="text-center">
                 <h2 className="">Salut, Je suis Roman</h2>
                 <p className="m-0 text-3xl">Développeur Web</p>
-                <p className="text-3xl m-0 text-slate-900 dark:text-gray-100 font-bold">
+                <p className="text-3xl m-0 text-lightButton dark:text-darkButton font-bold">
                   basé sur Lyon
                 </p>
               </div>
-              <div className="mt-3 w-5/6 lg:w-1/3">
+              <div className="mt-3 w-5/6 lg:w-1/3 text-center text-lightHeadline dark:text-darkParagraph">
                 <p className="text-base mb-2">
                   J&rsquo;ai rejoint en mars 2022 la formation Développeur Web
                   de chez OpenClassrooms pour en faire mon métier. Je maîtrise
@@ -109,6 +112,7 @@ function Home() {
               experienceData={experienceData}
               searchTerm={searchTerm}
             />
+            <Footer />
           </div>
         </>
       )}
