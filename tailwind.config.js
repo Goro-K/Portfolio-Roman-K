@@ -13,7 +13,9 @@ module.exports = {
       },
       height: {
         "500px": "500px",
-        "400px": "400px"
+        "400px": "400px",
+        "60vh" : "60vh",
+        "100vh": "100vh",
       },
       width: {
         "400px": "400px"
@@ -26,7 +28,20 @@ module.exports = {
         }
       },
       animation: {
-        appear: "appear 1.5s ease-in-out forwards"      
+        appear: "appear 1.3s ease-in-out forwards",
+      },
+      colors: {
+        lightBg: "#fffffe",
+        lightHeadline: "#2b2c34",
+        lightButton:"#6246ea",
+        lightGallery: "#d1d1e9",
+        lightBtnGallery: "#3da9fc",
+        darkBg: "#16161a",
+        darkHeadline: "#fffffe",
+        darkButton: "#7f5af0",
+        darkParagraph: "#94a1b2",
+        darkGallery:"#242629",
+        darkBtnGallery: "#078080"
       }
     },
   },
