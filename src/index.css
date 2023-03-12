@@ -104,6 +104,12 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (max-width: 640px) {
+  .slide-projet {
+    width: 240px !important;
+  }
+}
+
 @media (max-width: 768px) {
   .overlay-header {
     display: none;
