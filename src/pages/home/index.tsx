@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Gallery from "../../components/gallery/gallery";
-import ProfilCV from "./img-cv.webp";
+import ProfilCV from "../../assets/img-cv.png"
 import ky from "ky";
 import Header from "../../components/header/index";
 import Footer from "../../components/footer";
