@@ -10,6 +10,7 @@ import "../../index.css"
 import Footer from "../../components/footer";
 import Home from "../home";
 import { Project } from "../../../types";
+import Header from "../../components/header/index";
 
 function Projet(): JSX.Element {
   // Variables d'état pour les données de projet
@@ -46,6 +47,8 @@ function Projet(): JSX.Element {
   }
 
   return project ? (
+    <>
+    <Header />
     <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
       <NavLink to="/">
         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />À Propos
@@ -120,6 +123,7 @@ function Projet(): JSX.Element {
       </div>
       <Footer />
     </div>
+  </>
   ) : (
     <Home />
   );
