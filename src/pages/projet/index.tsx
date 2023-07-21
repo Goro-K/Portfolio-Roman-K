@@ -21,7 +21,7 @@ function Projet(): JSX.Element {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ky.get("http://localhost:5000/api/project");
+        const response = await ky.get("http://localhost:5000/project");
         const project: Project[] = await response.json() as Project[];
         setProjectData(project);
         setLoading(false)
