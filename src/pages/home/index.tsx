@@ -18,9 +18,9 @@ function Home() {
     const fetchData = async () => {
       try {
         const [project, technologie, experience]: [Project[], Technologie[], Experience[]] = await Promise.all([
-          ky.get("http://localhost:5000/api/project").then(res => res.json() as Promise<Project[]>),
-          ky.get("http://localhost:5000/api/technologie").then(res => res.json() as Promise<Technologie[]>),
-          ky.get("http://localhost:5000/api/experience").then(res => res.json() as Promise<Experience[]>),
+          ky.get("http://localhost:5000/project").then(res => res.json() as Promise<Project[]>),
+          ky.get("http://localhost:5000/technologie").then(res => res.json() as Promise<Technologie[]>),
+          ky.get("http://localhost:5000/experience").then(res => res.json() as Promise<Experience[]>),
         ]);
         setProjectData(project);
         setTechnologieData(technologie);
