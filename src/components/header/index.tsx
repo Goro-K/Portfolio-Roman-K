@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchTerm, setIsWriting, searchTerm
     // Fetch (POST) avec la librairie Ky
     try {
       const response = await ky
-        .post("http://localhost:5000/api/form", { json: values })
+        .post("http://localhost:5000/form", { json: values })
         .json();
       console.log(response);
       setSuccess(true);
