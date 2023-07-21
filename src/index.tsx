@@ -10,8 +10,7 @@ import Home from "./pages/home/index";
 import Error from "./pages/error/index";
 import Projet from "./pages/projet/index";
 
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -20,5 +19,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/error" element={<Error />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
