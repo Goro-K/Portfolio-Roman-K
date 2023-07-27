@@ -13,6 +13,8 @@ dist-ssr
 *.local
 public
 src/assets
+.env
+config.ts
 
 # Editor directories and files
 .vscode/*
