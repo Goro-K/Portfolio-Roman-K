@@ -11,6 +11,7 @@ import Footer from "../../components/footer";
 import Home from "../home";
 import { Project } from "../../../types";
 import Header from "../../components/header/index";
+import { API_URL } from "../../../config";
 
 function Projet(): JSX.Element {
   // Variables d'état pour les données de projet
@@ -21,7 +22,7 @@ function Projet(): JSX.Element {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ky.get("http://localhost:5000/project");
+        const response = await ky.get(`${API_URL}/project`);
         const project: Project[] = await response.json() as Project[];
         setProjectData(project);
         setLoading(false)

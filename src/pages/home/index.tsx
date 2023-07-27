@@ -4,6 +4,7 @@ import ProfilCV from "../../assets/img-cv.png"
 import ky from "ky";
 import Header from "../../components/header/index";
 import Footer from "../../components/footer";
+import {API_URL} from "../../../config";
 
 import { Project, Technologie, Experience } from '../../../types';
 
@@ -18,9 +19,9 @@ function Home() {
     const fetchData = async () => {
       try {
         const [project, technologie, experience]: [Project[], Technologie[], Experience[]] = await Promise.all([
-          ky.get("http://localhost:5000/project").then(res => res.json() as Promise<Project[]>),
-          ky.get("http://localhost:5000/technologie").then(res => res.json() as Promise<Technologie[]>),
-          ky.get("http://localhost:5000/experience").then(res => res.json() as Promise<Experience[]>),
+          ky.get(`${API_URL}/project`).then(res => res.json() as Promise<Project[]>),
+          ky.get(`${API_URL}/technologie`).then(res => res.json() as Promise<Technologie[]>),
+          ky.get(`${API_URL}/experience`).then(res => res.json() as Promise<Experience[]>),
         ]);
         setProjectData(project);
         setTechnologieData(technologie);

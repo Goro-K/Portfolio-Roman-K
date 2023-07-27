@@ -7,6 +7,7 @@ import ky from "ky";
 import Button from "../button/button";
 import IconeClose from "../iconeClose/index";
 import SearchBar from "../searchBar/searchBar";
+import { API_URL } from "../../../config";
 
 interface HeaderProps {
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
@@ -26,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ setSearchTerm, setIsWriting, searchTerm
     // Fetch (POST) avec la librairie Ky
     try {
       const response = await ky
-        .post("http://localhost:5000/form", { json: values })
+        .post(`${API_URL}/form`, { json: values })
         .json();
       console.log(response);
       setSuccess(true);
