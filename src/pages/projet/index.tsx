@@ -39,9 +39,6 @@ function Projet(): JSX.Element {
   const params = useParams();
 
   const project = projectData.length > 0 ? projectData.find((project) => project.id === params.id) : null;
-  if (!project) {
-    return <Error />;
-  }
 
   if(loading) {
     return <Home />
@@ -50,7 +47,7 @@ function Projet(): JSX.Element {
   return project ? (
     <>
     <Header />
-    <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-gray-200 dark:bg-slate-900 transition duration-500 py-5">
+    <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-lightGallery dark:bg-darkGallery transition duration-500 py-5">
       <NavLink to="/">
         <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />À Propos
       </NavLink>
@@ -79,7 +76,7 @@ function Projet(): JSX.Element {
             <a
               href={project.video}
               target="blank"
-              className=" text-center ml-4 rounded-3xl text-white bg-blue-500 dark:bg-red-500 p-2"
+              className=" text-center ml-4 rounded-3xl text-white bg-lightBtnGallery dark:bg-darkBtnGallery p-2"
             >
               Video du projet
             </a>
@@ -122,11 +119,11 @@ function Projet(): JSX.Element {
           ))}
         </Swiper>
       </div>
-      <Footer />
     </div>
+    <Footer />
   </>
   ) : (
-    <Home />
+    <Error />
   );
 }
 
