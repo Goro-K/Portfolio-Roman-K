@@ -67,7 +67,7 @@ const Gallery: React.FC<GalleryProps> = ({
                 <>
                   <div className="hover:animate-pulse">
                     <NavLink
-                      to={`/projet/${projet.id}`}
+                      to={`/projet/${projet._id}`}
                       aria-label={`${projet.title}`}
                     >
                       <img
