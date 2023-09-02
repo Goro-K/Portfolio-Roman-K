@@ -3,48 +3,33 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper";
-import ky from "ky";
-import Error from "../error/index";
 import { useEffect, useState } from "react";
 import "../../index.css"
 import Footer from "../../components/footer";
-import Home from "../home";
 import { Project } from "../../../types";
 import Header from "../../components/header/index";
-import { API_URL } from "../../../config";
+import { getProject } from "../../api/getProject";
 
 function Projet(): JSX.Element {
   // Variables d'état pour les données de projet
-  const [projectData, setProjectData] = useState<Project[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // Fetch de l'api avec les différents projets
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await ky.get(`${API_URL}/project`);
-        const project: Project[] = await response.json() as Project[];
-        setProjectData(project);
-        setLoading(false)
-      } catch (err) {
-        console.error(err)
-        setLoading(false)
-      }
-    };
-    fetchData();
-  }, []);
-
-
+  const [projectData, setProjectData] = useState<Project | undefined>();
+  
   // On recupére l'id dans le lien et le compare à l'id du projet
   const params = useParams();
 
-  const project = projectData.length > 0 ? projectData.find((project) => project.id === params.id) : null;
+  // Fetch de l'api avec les différents projets
+  useEffect(() => {
+    async function fetchProject() {
+      const projectId = params.id
+      if(!projectId) return;
+      const project = await getProject(projectId);
+      setProjectData(project);
+    }
+    fetchProject();
+  }, []);
 
-  if(loading) {
-    return <Home />
-  }
 
-  return project ? (
+  return (
     <>
     <Header />
     <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-lightGallery dark:bg-darkGallery transition duration-500 py-5">
@@ -54,13 +39,13 @@ function Projet(): JSX.Element {
       <div className="md:flex-none">
         <div className=" mt-2 md:mt-0 w-3/4 text-center md:w-64 md:float-right mx-10">
           <img
-            src={project.logo}
+            src={projectData?.logo}
             alt=""
             className="md:w-full rounded-full drop-shadow-xl mr-0"
           />
           <h4 className="my-2 text-l font-bold text-center">Technologies</h4>
           <div className="flex justify-center md:w-64">
-            {project.technologies.map((technologie, index) => (
+            {projectData?.technologies.map((technologie, index) => (
               <img
                 src={technologie}
                 alt=""
@@ -71,10 +56,10 @@ function Projet(): JSX.Element {
           </div>
         </div>
         <div className="my-6 flex items-center">
-          <h1 className="text-4xl font-bold">{project.title}</h1>
-          {project.video ? (
+          <h1 className="text-4xl font-bold">{projectData?.title}</h1>
+          {projectData?.video ? (
             <a
-              href={project.video}
+              href={projectData?.video}
               target="blank"
               className=" text-center ml-4 rounded-3xl text-white bg-lightBtnGallery dark:bg-darkBtnGallery p-2"
             >
@@ -86,12 +71,12 @@ function Projet(): JSX.Element {
       <div className="h-1/3">
       <div className="my-10">
         <h2 className="text-xl font-bold">Description</h2>
-        <p>{project.description}</p>
+        <p>{projectData?.description}</p>
       </div>
       <div className="my-10">
         <h2 className="text-xl font-bold">Objectif</h2>
         <div>
-          {project.objectifs.map((objectif, index) => (
+          {projectData?.objectifs.map((objectif, index) => (
             <p key={`objectif ${index + 1}`}>{objectif}</p>
           ))}
         </div>
@@ -108,7 +93,7 @@ function Projet(): JSX.Element {
             grabCursor={true}
             className="swiper"
           >
-          {project.imagesPc.map((image, index) => (
+          {projectData?.imagesPc.map((image, index) => (
             <SwiperSlide key={`Site web pages ${index + 1}`} className="swiper-project">
             <img
               src={image}
@@ -122,9 +107,7 @@ function Projet(): JSX.Element {
     </div>
     <Footer />
   </>
-  ) : (
-    <Error />
-  );
+  )
 }
 
 export default Projet;
