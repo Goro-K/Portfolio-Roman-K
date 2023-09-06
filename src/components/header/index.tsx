@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import Button from "../button/button";
+import ToggleTheme from "../toggleTheme/toggleTheme";
 import SearchBar from "../searchBar/searchBar";
 import Form from "../form/index";
 
@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({
         isClicked={isClicked}
         setIsClicked={setIsClicked}
       />
-      <header className="animate-appear bg-lightBg text-lightHeadline dark:bg-darkBg dark:text-darkHeadline ">
+      <header className="bg-lightBg text-lightHeadline dark:bg-darkBg dark:text-darkHeadline ">
         <nav className="p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -104,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
                 />
               )}
 
-              <Button />
+              <ToggleTheme />
               <a
                 href="https://linkedin.com/in/roman-kiziltoprak-247338182/"
                 target="blank"

@@ -48,14 +48,14 @@ function Home() {
   const [isWriting, setIsWriting] = useState(false);
 
   return (
-    <>
+    <div className = "animate-appear transition">
       <Header
         setSearchTerm={setSearchTerm}
         setIsWriting={setIsWriting}
         searchTerm={searchTerm}
       />
       {isWriting ? (
-        <div className="mx-auto bg-lightBg dark:bg-darkBg transition duration-500">
+        <div className="mx-auto bg-lightBg dark:bg-darkBg">
           <Gallery
             projectData={projectData}
             technologieData={technologieData}
@@ -65,11 +65,11 @@ function Home() {
         </div>
       ) : (
         <>
-          <div className="mx-auto bg-lightBg dark:bg-darkBg">
+          <div className="mx-auto bg-lightBg dark:bg-darkBg transition duration-300">
             <div
               className="flex flex-col lg:flex-row text-4xl 
             text-slate-900 dark:text-darkHeadline 
-            items-center lg:justify-evenly animate-appear py-12 gap-8"
+            items-center lg:justify-evenly py-12 gap-8"
             >
               <div className="text-center">
                 <h2 className="">Salut, Je suis Roman</h2>
@@ -126,7 +126,7 @@ function Home() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
 export default Home;
