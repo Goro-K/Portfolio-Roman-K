@@ -1,35 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper";
-import { useEffect, useState } from "react";
 import "../../index.css"
 import Footer from "../../components/footer";
-import { Project } from "../../../types";
 import Header from "../../components/header/index";
-import { getProject } from "../../api/getProject";
+import Error from "../error";
 
 function Projet(): JSX.Element {
-  // Variables d'état pour les données de projet
-  const [projectData, setProjectData] = useState<Project | undefined>();
-  
-  // On recupére l'id dans le lien et le compare à l'id du projet
-  const params = useParams();
+  const location = useLocation()
 
-  // Fetch de l'api avec les différents projets
-  useEffect(() => {
-    async function fetchProject() {
-      const projectId = params.id
-      if(!projectId) return;
-      const project = await getProject(projectId);
-      setProjectData(project);
-    }
-    fetchProject();
-  }, []);
-
+  const projectData = location.state?.projectData
 
   return (
+    projectData ? (
     <>
     <Header />
     <div className="md:min-h-screen px-8 text-slate-900 dark:text-gray-300 bg-lightGallery dark:bg-darkGallery transition duration-500 py-5">
@@ -45,7 +30,7 @@ function Projet(): JSX.Element {
           />
           <h4 className="my-2 text-l font-bold text-center">Technologies</h4>
           <div className="flex justify-center md:w-64">
-            {projectData?.technologies.map((technologie, index) => (
+            {projectData?.technologies.map((technologie: string | undefined, index: number) => (
               <img
                 src={technologie}
                 alt=""
@@ -76,7 +61,7 @@ function Projet(): JSX.Element {
       <div className="my-10">
         <h2 className="text-xl font-bold">Objectif</h2>
         <div>
-          {projectData?.objectifs.map((objectif, index) => (
+          {projectData?.objectifs.map((objectif: string, index: number) => (
             <p key={`objectif ${index + 1}`}>{objectif}</p>
           ))}
         </div>
@@ -93,7 +78,7 @@ function Projet(): JSX.Element {
             grabCursor={true}
             className="swiper"
           >
-          {projectData?.imagesPc.map((image, index) => (
+          {projectData?.imagesPc.map((image: string | undefined, index: number) => (
             <SwiperSlide key={`Site web pages ${index + 1}`} className="swiper-project">
             <img
               src={image}
@@ -107,6 +92,9 @@ function Projet(): JSX.Element {
     </div>
     <Footer />
   </>
+  ) : (
+    <Error />
+  )
   )
 }
 
