@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -66,16 +67,17 @@ const Gallery: React.FC<GalleryProps> = ({
               >
                 <>
                   <div className="hover:animate-pulse">
-                    <NavLink
+                    <Link
                       to={`/projet/${projet._id}`}
                       aria-label={`${projet.title}`}
+                      state={{ projectData: projet }}
                     >
                       <img
                         src={projet.logo}
                         alt=""
                         className="rounded-2xl sm:h-80 sm:w-80 h-60 w-60 my-3 mb-6"
                       />
-                    </NavLink>
+                    </Link>
                   </div>
                 </>
               </SwiperSlide>
