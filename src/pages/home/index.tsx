@@ -53,6 +53,7 @@ function Home() {
         setSearchTerm={setSearchTerm}
         setIsWriting={setIsWriting}
         searchTerm={searchTerm}
+        isWriting={isWriting}
       />
       {isWriting ? (
         <div className="mx-auto bg-lightBg dark:bg-darkBg">

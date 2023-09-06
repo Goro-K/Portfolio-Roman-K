@@ -8,12 +8,16 @@ interface SearchBarProps {
   searchTerm?: string;
   glassHeader: string;
   glassHome: string;
+  setIsWriting: React.Dispatch<React.SetStateAction<boolean>>;
+  isWriting: boolean;
 }
 const SearchBar: React.FC<SearchBarProps> = ({
   setSearchTerm,
   glassHeader,
   glassHome,
-  searchTerm = ""
+  searchTerm = "",
+  setIsWriting,
+  isWriting
 }) => {
   // récupère la recherche dans la barre de recherche
   const navigate = useNavigate();
@@ -24,20 +28,25 @@ const [ isClicked, setIsClicked] = useState(false)
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSearchParams({term : searchTerm})
+    setIsWriting(true)
     navigate("/");
   };
   return (
     <div className={`${glassHeader} ${glassHome}`}>
       <button aria-label="searchButton">
         <FontAwesomeIcon icon={faMagnifyingGlass}
-          onClick={() => setIsClicked(!isClicked)}
+          onClick={() => {setIsClicked(!isClicked);
+            setIsWriting(!isWriting)}}
           className="w-6 h-6 ml-2 mr-1"
         />
       </button>
       <form onSubmit={handleSearch}>
         <input
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => 
+            setSearchTerm(e.target.value)
+            
+          }
           className={
             isClicked
               ? "text-slate-900 p-1 mx-0.5 rounded-md focus:outline-none shadow-inner focus:shadow-lightGallery w-full search-bar-open"

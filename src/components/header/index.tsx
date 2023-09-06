@@ -10,12 +10,14 @@ interface HeaderProps {
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
   setIsWriting?: React.Dispatch<React.SetStateAction<boolean>>;
   searchTerm?: string;
+  isWriting:boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({
   setSearchTerm,
   setIsWriting,
   searchTerm,
+  isWriting,
 }) => {
 
   // Pour fermer ou ouvrir la card
@@ -101,6 +103,8 @@ const Header: React.FC<HeaderProps> = ({
                   setSearchTerm={setSearchTerm}
                   glassHeader="glass-header"
                   glassHome=""
+                  setIsWriting={setIsWriting}
+                  isWriting={isWriting}
                 />
               )}
 
@@ -183,6 +187,8 @@ const Header: React.FC<HeaderProps> = ({
               setSearchTerm={setSearchTerm}
               glassHome="glass-home"
               glassHeader=""
+              setIsWriting = {setIsWriting}
+              isWriting={isWriting}
             />
           )}
         </nav>
