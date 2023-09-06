@@ -10,7 +10,7 @@ interface HeaderProps {
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
   setIsWriting?: React.Dispatch<React.SetStateAction<boolean>>;
   searchTerm?: string;
-  isWriting:boolean;
+  isWriting?:boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({

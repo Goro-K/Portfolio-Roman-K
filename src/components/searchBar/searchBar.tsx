@@ -9,7 +9,7 @@ interface SearchBarProps {
   glassHeader: string;
   glassHome: string;
   setIsWriting: React.Dispatch<React.SetStateAction<boolean>>;
-  isWriting: boolean;
+  isWriting?: boolean;
 }
 const SearchBar: React.FC<SearchBarProps> = ({
   setSearchTerm,
