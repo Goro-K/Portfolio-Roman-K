@@ -2,10 +2,9 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import ky from "ky";
 import Button from "../button/button";
 import SearchBar from "../searchBar/searchBar";
-import Overlay from "../overlay/index";
+import Form from "../form/index";
 
 interface HeaderProps {
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
@@ -18,25 +17,6 @@ const Header: React.FC<HeaderProps> = ({
   setIsWriting,
   searchTerm,
 }) => {
-  const [success, setSuccess] = useState(false);
-  // Gestion de la soumission du formulaire et gestion des valeurs des inputs, je n'utilise pas de state pour éviter les re-render
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-    const values = Object.fromEntries(new FormData(form));
-
-    // Fetch (POST) avec la librairie Ky
-    try {
-      const response = await ky
-        .post("http://localhost:5000/form", { json: values })
-        .json();
-      console.log(response);
-      setSuccess(true);
-    } catch (error) {
-      alert("Il doit y avoir une erreur dans les champs enregistré");
-    }
-  };
 
   // Pour fermer ou ouvrir la card
   const [isActive, setIsActive] = useState(false);
@@ -50,11 +30,9 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <>
-      <Overlay
-        handleSubmit={handleSubmit}
+      <Form
         isClicked={isClicked}
         setIsClicked={setIsClicked}
-        success={success}
       />
       <header className="animate-appear bg-lightBg text-lightHeadline dark:bg-darkBg dark:text-darkHeadline ">
         <nav className="p-4">
@@ -211,9 +189,7 @@ const Header: React.FC<HeaderProps> = ({
       </header>
       <div>
         {isClicked ? (
-          <Overlay
-            handleSubmit={handleSubmit}
-            success={success}
+          <Form
             setIsClicked={setIsClicked}
             isClicked={isClicked}
           />
