@@ -68,7 +68,7 @@ const Gallery: React.FC<GalleryProps> = ({
                 <>
                   <div className="hover:animate-pulse">
                     <Link
-                      to={`/projet/${projet._id}`}
+                      to={`/projet/${projet.id}`}
                       aria-label={`${projet.title}`}
                       state={{ projectData: projet }}
                     >
