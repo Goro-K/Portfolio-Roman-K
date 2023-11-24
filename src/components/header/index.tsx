@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import ToggleTheme from "../toggleTheme/toggleTheme";
 import SearchBar from "../searchBar/searchBar";
-import Form from "../form/index";
 
 interface HeaderProps {
   setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
@@ -23,19 +22,8 @@ const Header: React.FC<HeaderProps> = ({
   // Pour fermer ou ouvrir la card
   const [isActive, setIsActive] = useState(false);
 
-  // Pour me contacter
-  const [isClicked, setIsClicked] = useState(false);
-
-  function handleClick() {
-    setIsClicked(!isClicked);
-  }
-
   return (
     <>
-      <Form
-        isClicked={isClicked}
-        setIsClicked={setIsClicked}
-      />
       <header className="bg-lightBg text-lightHeadline dark:bg-darkBg dark:text-darkHeadline ">
         <nav className="p-4">
           <div className="flex items-center justify-between">
@@ -88,12 +76,12 @@ const Header: React.FC<HeaderProps> = ({
                 >
                   À Propos
                 </NavLink>
-                <p
+                <NavLink
                   className="cursor-pointer p-1 text-lightBg bg-lightButton dark:bg-darkButton rounded-md"
-                  onClick={handleClick}
+                  to="mailto:romankizilt@gmail.com"
                 >
                   Me Contacter
-                </p>
+                </NavLink>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -139,9 +127,10 @@ const Header: React.FC<HeaderProps> = ({
                   <NavLink className=" font-bold " to="/">
                     À Propos
                   </NavLink>
-                  <p className="cursor-pointer font-bold" onClick={handleClick}>
+                  <NavLink className="cursor-pointer font-bold"
+                  to="mailto:romankizilt@gmail.com">
                     Me Contacter
-                  </p>
+                  </NavLink>
                 </div>
                 <div
                   className={`md:hidden`}
@@ -193,14 +182,6 @@ const Header: React.FC<HeaderProps> = ({
           )}
         </nav>
       </header>
-      <div>
-        {isClicked ? (
-          <Form
-            setIsClicked={setIsClicked}
-            isClicked={isClicked}
-          />
-        ) : null}
-      </div>
     </>
   );
 };

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import Gallery from "../../components/gallery/gallery";
 import ProfilCV from "../../assets/img-cv.webp";
-import ky from "ky";
 import Header from "../../components/header/index";
 import Footer from "../../components/footer";
-import { API_URL } from "../../../config";
 
 import { Project, Technologie, Experience } from "../../../types";
+
+// Importez les fichiers JSON
+import projectsData from '../../projects.json';
+import technologiesData from '../../technologies.json';
+import experiencesData from '../../experiences.json';
 
 function Home() {
   // State pour stocker les données de l'api
@@ -16,31 +19,10 @@ function Home() {
 
   // Fetch de l'api avec les différents projets
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [project, technologie, experience]: [
-          Project[],
-          Technologie[],
-          Experience[]
-        ] = await Promise.all([
-          ky
-            .get(`${API_URL}/projects`)
-            .then((res) => res.json() as Promise<Project[]>),
-          ky
-            .get(`${API_URL}/technologie`)
-            .then((res) => res.json() as Promise<Technologie[]>),
-          ky
-            .get(`${API_URL}/experience`)
-            .then((res) => res.json() as Promise<Experience[]>),
-        ]);
-        setProjectData(project);
-        setTechnologieData(technologie);
-        setExperienceData(experience);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
+    // Assurez-vous que les données importées correspondent à vos interfaces
+    setProjectData(projectsData as Project[]);
+    setTechnologieData(technologiesData as Technologie[]);
+    setExperienceData(experiencesData as Experience[])
   }, []);
 
   // système de recherche
